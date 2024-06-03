@@ -1,0 +1,89 @@
+version: "3.8"
+
+networks:
+  hellocse_network:
+    name: hellocse_network
+
+services:
+  nginx:
+    build:
+      context: .
+      dockerfile: nginx.dockerfile
+    container_name: nginx
+    ports:
+      - 3002:80
+      - 443:443
+    volumes:
+      - ./src:/var/www/html:delegated
+    networks:
+      - hellocse_network
+    depends_on:
+      - php
+      - mysql
+      - phpmyadmin
+      - redis
+
+  php:
+    build:
+      context: .
+      dockerfile: php.dockerfile
+    container_name: php
+    volumes:
+      - ./src:/var/www/html:delegated
+    networks:
+      - hellocse_network
+
+  mysql:
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: helloCSE_DB
+      MYSQL_USER: homestead
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+    container_name: mysql
+    ports:
+      - 4306:3306
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      - hellocse_network
+
+  artisan:
+    build:
+      context: .
+      dockerfile: php.dockerfile
+    container_name: artisan
+    volumes:
+      - ./src:/var/www/html
+    working_dir: /var/www/html
+    entrypoint: ["php", "artisan"]
+    networks:
+      - hellocse_network
+
+  composer:
+    image: composer:latest
+    container_name: composer
+    volumes:
+      - ./src:/var/www/html
+    working_dir: /var/www/html
+    networks:
+      - hellocse_network
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: phpmyadmin
+    ports:
+      - 2023:80
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: homestead
+      PMA_PASSWORD: secret
+    networks:
+      - hellocse_network
+  redis:
+    container_name: redis
+    image: redis:latest
+    ports:
+      - 6379:6379
+    networks:
+      - hellocse_network

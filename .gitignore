@@ -1,0 +1,8 @@
+
+mysql/
+./mysql
+./mysql/
+.DS_Store
+.vscode
+.idea
+
