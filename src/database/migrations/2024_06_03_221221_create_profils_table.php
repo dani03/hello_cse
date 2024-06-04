@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::create('profils', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('nom');
             $table->string('prenom')->nullable();
             $table->string('image');
             $table->integer('status')->default(Status::EN_ATTENTE);

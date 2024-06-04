@@ -12,12 +12,16 @@ class ProfilRepository
     {
         return Profil::create(
             [
-                "name" => $profil->get('name'),
+                "nom" => $profil->get('nom'),
                 "prenom" => $profil->get('prenom'),
                 "status" => Status::EN_ATTENTE,
                 "image" => $profil->get('file_path')
             ]
         );
+    }
+
+    public function findAllProfilActif() {
+        return Profil::where('status', Status::ACTIF)->get();
     }
 
 }

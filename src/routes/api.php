@@ -19,8 +19,9 @@ use Illuminate\Support\Facades\Route;
 //routes sans authentification
 Route::post('register', RegisterController::class);
 Route::post('login', LoginController::class);
+Route::get('profils', [ProfilController::class, 'index']);
 
 //groupes de routes avec authentification
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('create/profil', [ProfilController::class, 'store']);
+    Route::post('store/profil', [ProfilController::class, 'store']);
 });
