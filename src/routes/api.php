@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Api\V1\Auth\LoginController;
+use App\Http\Controllers\Api\V1\Auth\RegisterController;
+use App\Http\Controllers\Api\V1\Profil\ProfilController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +16,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
+//routes sans authentification
+Route::post('register', RegisterController::class);
+Route::post('login', LoginController::class);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+//groupes de routes avec authentification
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('create/profil', [ProfilController::class, 'store']);
 });
