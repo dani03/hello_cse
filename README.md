@@ -1,4 +1,4 @@
-# quiz-dev
+# HelloCSE
 
 ceci est une mini API de helloCSE;
 
