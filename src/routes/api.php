@@ -24,4 +24,5 @@ Route::get('profils', [ProfilController::class, 'index']);
 //groupes de routes avec authentification
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('store/profil', [ProfilController::class, 'store']);
+    Route::post('update/profil/{id}', [ProfilController::class, 'update']);
 });

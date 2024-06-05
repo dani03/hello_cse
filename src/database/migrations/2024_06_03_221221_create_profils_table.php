@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('prenom')->nullable();
             $table->string('image');
             $table->integer('status')->default(Status::EN_ATTENTE);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

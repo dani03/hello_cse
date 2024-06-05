@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api\V1\Profil;
 
+use App\Enums\Status;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateProfileRequest;
+use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Resources\ProfilRessource;
 use App\Http\Services\Profils\ProfilService;
 use Illuminate\Http\Request;
@@ -18,10 +20,11 @@ class ProfilController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-       $profils = $this->profilService->getAllProfilActif();
-       return ProfilRessource::collection($profils);
+        $profils = $this->profilService->getAllProfilActif();
+
+        return response()->json(ProfilRessource::collection($profils), Response::HTTP_OK);
     }
 
     /**
@@ -50,9 +53,22 @@ class ProfilController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateProfileRequest $request, int $id)
     {
-        //
+        //recupération du profil adéquat
+        $profil = $this->profilService->getProfil($id);
+        if (!$profil) {
+            return response()->json(["message" => "aucun profil trouvé."], Response::HTTP_NOT_FOUND);
+        }
+
+
+        $profilUpdated = $this->profilService->updateProfil($profil, $request);
+
+        if ($profilUpdated->wasChanged()) {
+            return response()->json(['message' => ' profil mis à jour avec succès', "data" => ProfilRessource::make($profilUpdated)], Response::HTTP_OK);
+        }
+        return response()->json(['message' => 'aucun changement effectué'], Response::HTTP_NOT_MODIFIED);
+
     }
 
     /**
@@ -60,6 +76,11 @@ class ProfilController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //récuperation du profil
+       $profil = $this->profilService->getProfil($id);
+       if(!$profil) {
+           return response()->json(['message' => 'Ce profil n\'existe pas. '], Response::HTTP_NOT_FOUND);
+       }
+
     }
 }

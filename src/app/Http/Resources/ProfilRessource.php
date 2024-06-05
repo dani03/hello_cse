@@ -17,23 +17,20 @@ class ProfilRessource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        // vérifie si l'utilisateur est authentifié
-        if (auth()->check()) {
-            $status = Status::fromValue((int) $this->status);
-            $data['status'] = $status ?? "Status inconnu";
-        }
+
         $data =  [
 
             'nom' => $this->nom,
             'prenom' => $this->prenom,
-            'image_path' => $this->image,
-
-            //'status' => Status::fromValue((int)$this->status) ,
+            'image' => $this->image,
             'created_at' => Carbon::make($this->created_at)->diffForHumans(),
             'updated_at' => Carbon::make($this->updated_at)->diffForHumans(),
         ];
-
-
+        // vérifie si l'utilisateur est authentifié
+        if ($request->user()) {
+            $status = Status::fromValue((int) $this->status);
+            $data['status'] = $status?->label();
+        }
 
         return $data;
     }
