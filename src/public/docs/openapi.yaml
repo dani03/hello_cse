@@ -1,0 +1,268 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/v1/register:
+    post:
+      summary: ''
+      operationId: postApiV1Register
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: rlthvmqmdjwqlddhaa
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 255 characters.'
+                  example: rmaggio@example.org
+                password:
+                  type: string
+                  description: ''
+                  example: culpa
+              required:
+                - name
+                - email
+                - password
+      security: []
+  /api/v1/test:
+    get:
+      summary: ''
+      operationId: getApiV1Test
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "Vous êtes bien sur l'API HelloCSE de Daniel."
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/login:
+    post:
+      summary: ''
+      operationId: postApiV1Login
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: janiya05@example.org
+                password:
+                  type: string
+                  description: ''
+                  example: nostrum
+              required:
+                - email
+                - password
+      security: []
+  /api/v1/profils:
+    get:
+      summary: 'Display a listing of the resource.'
+      operationId: displayAListingOfTheResource
+      description: ''
+      parameters: []
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    -
+                      nom: pistolero
+                      prenom: laravel
+                      image: images/0QjCS7l8HVbXaPo4muLGlEjxz4H7dXobH6OQ8UOW-custom_icon.png
+                      created_at: '12 hours ago'
+                      updated_at: '12 hours ago'
+                    -
+                      nom: 'hello world  pelo'
+                      prenom: sacha
+                      image: images/qOrAVPcYvrxVHIsKEsvxaLu4rdKqQLBWHdWHoiUY-paris.png
+                      created_at: '12 hours ago'
+                      updated_at: '12 hours ago'
+                    -
+                      nom: 'Dr. Mohamed Eichmann II'
+                      prenom: Jody
+                      image: /tmp/cc3bf647edbc57b6f2afba27b586688f.png
+                      created_at: '1 hour ago'
+                      updated_at: '1 hour ago'
+                    -
+                      nom: 'Mr. Jerrod Greenholt'
+                      prenom: Lavon
+                      image: /tmp/71391df7cf03d71754c81cd680a68c84.png
+                      created_at: '1 hour ago'
+                      updated_at: '1 hour ago'
+                properties:
+                  data:
+                    type: array
+                    example:
+                      -
+                        nom: pistolero
+                        prenom: laravel
+                        image: images/0QjCS7l8HVbXaPo4muLGlEjxz4H7dXobH6OQ8UOW-custom_icon.png
+                        created_at: '12 hours ago'
+                        updated_at: '12 hours ago'
+                      -
+                        nom: 'hello world  pelo'
+                        prenom: sacha
+                        image: images/qOrAVPcYvrxVHIsKEsvxaLu4rdKqQLBWHdWHoiUY-paris.png
+                        created_at: '12 hours ago'
+                        updated_at: '12 hours ago'
+                      -
+                        nom: 'Dr. Mohamed Eichmann II'
+                        prenom: Jody
+                        image: /tmp/cc3bf647edbc57b6f2afba27b586688f.png
+                        created_at: '1 hour ago'
+                        updated_at: '1 hour ago'
+                      -
+                        nom: 'Mr. Jerrod Greenholt'
+                        prenom: Lavon
+                        image: /tmp/71391df7cf03d71754c81cd680a68c84.png
+                        created_at: '1 hour ago'
+                        updated_at: '1 hour ago'
+                    items:
+                      type: object
+                      properties:
+                        nom:
+                          type: string
+                          example: pistolero
+                        prenom:
+                          type: string
+                          example: laravel
+                        image:
+                          type: string
+                          example: images/0QjCS7l8HVbXaPo4muLGlEjxz4H7dXobH6OQ8UOW-custom_icon.png
+                        created_at:
+                          type: string
+                          example: '12 hours ago'
+                        updated_at:
+                          type: string
+                          example: '12 hours ago'
+      tags:
+        - Endpoints
+      security: []
+  /api/v1/store/profil:
+    post:
+      summary: 'Store a newly created resource in storage.'
+      operationId: storeANewlyCreatedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                nom:
+                  type: string
+                  description: ''
+                  example: doloribus
+                prenom:
+                  type: string
+                  description: ''
+                  example: cupiditate
+                image:
+                  type: string
+                  format: binary
+                  description: 'Must be a file.'
+              required:
+                - nom
+                - image
+      security: []
+  '/api/v1/update/profil/{id}':
+    post:
+      summary: 'Update the specified resource in storage.'
+      operationId: updateTheSpecifiedResourceInStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: false
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                nom:
+                  type: string
+                  description: ''
+                  example: enim
+                prenom:
+                  type: string
+                  description: ''
+                  example: repudiandae
+                image:
+                  type: string
+                  format: binary
+                  description: 'Must be a file.'
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the profil.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+  '/api/v1/delete/profil/{id}':
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      operationId: removeTheSpecifiedResourceFromStorage
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the profil.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Endpoints
+    description: ''

@@ -44,6 +44,12 @@ L'accès à PHpMyadmin est sur le port 2023 et donc sur le lien : http://localh
 username : homestead
 password : secret
 
+# La documentation des endpoints de l'API
+
+Pour voir les routes (endpoints) que vous pouvez utiliser, vous pouvez avoir accès si vos conteneurs sont en marche sur le lien : <a href="http://localhost:3002/docs/index.html">
+voir la doc.
+</a>
+
 
 # En cas de probleme de cache BDD
 
