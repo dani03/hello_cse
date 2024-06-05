@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 */
 //routes sans authentification
 Route::post('register', RegisterController::class);
+Route::get('test', static function() {
+    return "Vous êtes bien sur l'API HelloCSE de Daniel.";
+});
 Route::post('login', LoginController::class);
 Route::get('profils', [ProfilController::class, 'index']);
 
