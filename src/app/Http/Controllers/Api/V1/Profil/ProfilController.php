@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateProfileRequest;
 use App\Http\Resources\ProfilRessource;
 use App\Http\Services\Profils\ProfilService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Symfony\Component\HttpFoundation\Response;
 
 class ProfilController extends Controller
@@ -20,11 +21,17 @@ class ProfilController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $profils = $this->profilService->getAllProfilActif();
 
-        return response()->json(ProfilRessource::collection($profils), Response::HTTP_OK);
+    //on recupere les profils stocker dans le cache afin d'éviter les requêtes nombreuse sur la BDD
+        //  les observers permettent de supprimer le cache si une
+        // un nouveau profil est crée ou mis à jour
+        // le cache est sauvegarder pour 24h
+        return response()->json(['data' => Cache::remember('profils', 60*60*24, function() {
+            return  ProfilRessource::collection($this->profilService->getAllProfilActif());
+        })], Response::HTTP_OK );
+
     }
 
     /**
