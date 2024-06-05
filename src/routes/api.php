@@ -25,4 +25,5 @@ Route::get('profils', [ProfilController::class, 'index']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('store/profil', [ProfilController::class, 'store']);
     Route::post('update/profil/{id}', [ProfilController::class, 'update']);
+    Route::delete('delete/profil/{id}', [ProfilController::class, 'destroy']);
 });

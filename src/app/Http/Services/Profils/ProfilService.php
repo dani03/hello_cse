@@ -51,7 +51,7 @@ class ProfilService
         return $this->profilRepository->findProfil($profilId);
     }
 
-    public function updateProfil(Profil $profil, $request)
+    public function updateProfil(Profil $profil, $request): Profil|string
     {
         //traitement des données si un nouveau fichier est upload alors on supprime l'ancien
         // et on le remplace par le nouveau
@@ -63,7 +63,6 @@ class ProfilService
             }
         }
         if ($request->has('status')) {
-
             $newStatus = $this->getValueOfStatus($request->status);
         }
 
@@ -80,6 +79,7 @@ class ProfilService
 
     public static function deleteExistingFile(string $pathToFile): bool
     {
+        //supprime un fichier existant
         if (Storage::exists($pathToFile)) {
             return Storage::delete($pathToFile);
         }
@@ -89,7 +89,6 @@ class ProfilService
 
     public function getValueOfStatus( $requestStatus): int|string
     {
-
         //vérification si le status donné est dans la liste des status prédéfinie
         //si oui on vérifie s'il fait parti des values ou des labels
         if (is_int($requestStatus) || is_numeric($requestStatus)) {
@@ -100,9 +99,9 @@ class ProfilService
             }
 
         }
-            $statusLabel = in_array($requestStatus, Status::allStatusLabel(), true);
+            $statusLabel = in_array($requestStatus, Status::allStatusLabel());
             if ($statusLabel) {
-                return (Status::fromLabel($requestStatus))->label();
+                return (Status::fromLabel($requestStatus))->value;
             }
 
             return (Status::INACTIF)->value;

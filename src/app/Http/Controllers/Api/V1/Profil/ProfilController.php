@@ -20,7 +20,7 @@ class ProfilController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request): \Illuminate\Http\JsonResponse
     {
         $profils = $this->profilService->getAllProfilActif();
 
@@ -30,7 +30,7 @@ class ProfilController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateProfileRequest $request)
+    public function store(CreateProfileRequest $request): \Illuminate\Http\JsonResponse
     {
         //on renvoie les données au service qui est chargé d'effectuer les transformations si nécessaire
         $profilCreated = $this->profilService->createProfil($request);
@@ -62,6 +62,7 @@ class ProfilController extends Controller
         }
 
 
+
         $profilUpdated = $this->profilService->updateProfil($profil, $request);
 
         if ($profilUpdated->wasChanged()) {
@@ -74,13 +75,17 @@ class ProfilController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): \Illuminate\Http\JsonResponse
     {
         //récuperation du profil
-       $profil = $this->profilService->getProfil($id);
-       if(!$profil) {
-           return response()->json(['message' => 'Ce profil n\'existe pas. '], Response::HTTP_NOT_FOUND);
-       }
-
+        $profil = $this->profilService->getProfil($id);
+        if (!$profil) {
+            return response()->json(['message' => 'Ce profil n\'existe pas. '], Response::HTTP_NOT_FOUND);
+        }
+        $profil->delete();
+        if ($profil->delete()) {
+            return response()->json(['message' => 'Profil supprimé.'], Response::HTTP_OK);
+        }
+        return response()->json(['message' => 'Une erreur est survenue, impossible de supprimer le profil.'], Response::HTTP_INTERNAL_SERVER_ERROR);
     }
 }
