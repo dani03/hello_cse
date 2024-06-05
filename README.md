@@ -50,6 +50,8 @@ Pour voir les routes (endpoints) que vous pouvez utiliser, vous pouvez avoir acc
 voir la doc.
 </a>
 
+ou (http://localhost:3002/docs)
+
 
 # En cas de probleme de cache BDD
 
