@@ -26,8 +26,8 @@ class ProfilRessource extends JsonResource
             'created_at' => Carbon::make($this->created_at)->diffForHumans(),
             'updated_at' => Carbon::make($this->updated_at)->diffForHumans(),
         ];
-        // vérifie si l'utilisateur est authentifié
-        if ($request->user()) {
+        // vérifie si l'utilisateur est authentifié pour afficher le champ
+        if ($request->user('sanctum')) {
             $status = Status::fromValue((int) $this->status);
             $data['status'] = $status?->label();
         }

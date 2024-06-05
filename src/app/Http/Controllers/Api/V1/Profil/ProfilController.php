@@ -20,7 +20,7 @@ class ProfilController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): \Illuminate\Http\JsonResponse
+    public function index(Request $request)
     {
         $profils = $this->profilService->getAllProfilActif();
 
