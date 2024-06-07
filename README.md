@@ -36,6 +36,7 @@ Une fois la clé générée, taper la commande `docker-compose up --build -d ngi
 
 Une fois vos conteneurs en marche, taper la commande `docker compose run --rm artisan migrate` afin de lancer les migrations vers votre base de données.
 Après les migrations lancer les seeders afin de peupler notre base de données avec la commande `docker compose run --rm artisan db:seed`.
+et pour lancer les test la commande `docker-compose --rm artisan test`
 
 # PHP MY ADMIN
 

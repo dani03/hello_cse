@@ -26,15 +26,15 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: rlthvmqmdjwqlddhaa
+                  example: japenzfamqxnbkghw
                 email:
                   type: string
                   description: 'Must be a valid email address. Must not be greater than 255 characters.'
-                  example: rmaggio@example.org
+                  example: nicolas.idell@example.net
                 password:
                   type: string
                   description: ''
-                  example: culpa
+                  example: autem
               required:
                 - name
                 - email
@@ -76,11 +76,11 @@ paths:
                 email:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: janiya05@example.org
+                  example: ephraim11@example.net
                 password:
                   type: string
                   description: ''
-                  example: nostrum
+                  example: corrupti
               required:
                 - email
                 - password
@@ -104,26 +104,26 @@ paths:
                       nom: pistolero
                       prenom: laravel
                       image: images/0QjCS7l8HVbXaPo4muLGlEjxz4H7dXobH6OQ8UOW-custom_icon.png
-                      created_at: '12 hours ago'
-                      updated_at: '12 hours ago'
+                      created_at: '13 hours ago'
+                      updated_at: '13 hours ago'
                     -
                       nom: 'hello world  pelo'
                       prenom: sacha
                       image: images/qOrAVPcYvrxVHIsKEsvxaLu4rdKqQLBWHdWHoiUY-paris.png
-                      created_at: '12 hours ago'
+                      created_at: '13 hours ago'
                       updated_at: '12 hours ago'
                     -
                       nom: 'Dr. Mohamed Eichmann II'
                       prenom: Jody
                       image: /tmp/cc3bf647edbc57b6f2afba27b586688f.png
-                      created_at: '1 hour ago'
-                      updated_at: '1 hour ago'
+                      created_at: '2 hours ago'
+                      updated_at: '2 hours ago'
                     -
                       nom: 'Mr. Jerrod Greenholt'
                       prenom: Lavon
                       image: /tmp/71391df7cf03d71754c81cd680a68c84.png
-                      created_at: '1 hour ago'
-                      updated_at: '1 hour ago'
+                      created_at: '2 hours ago'
+                      updated_at: '2 hours ago'
                 properties:
                   data:
                     type: array
@@ -132,26 +132,26 @@ paths:
                         nom: pistolero
                         prenom: laravel
                         image: images/0QjCS7l8HVbXaPo4muLGlEjxz4H7dXobH6OQ8UOW-custom_icon.png
-                        created_at: '12 hours ago'
-                        updated_at: '12 hours ago'
+                        created_at: '13 hours ago'
+                        updated_at: '13 hours ago'
                       -
                         nom: 'hello world  pelo'
                         prenom: sacha
                         image: images/qOrAVPcYvrxVHIsKEsvxaLu4rdKqQLBWHdWHoiUY-paris.png
-                        created_at: '12 hours ago'
+                        created_at: '13 hours ago'
                         updated_at: '12 hours ago'
                       -
                         nom: 'Dr. Mohamed Eichmann II'
                         prenom: Jody
                         image: /tmp/cc3bf647edbc57b6f2afba27b586688f.png
-                        created_at: '1 hour ago'
-                        updated_at: '1 hour ago'
+                        created_at: '2 hours ago'
+                        updated_at: '2 hours ago'
                       -
                         nom: 'Mr. Jerrod Greenholt'
                         prenom: Lavon
                         image: /tmp/71391df7cf03d71754c81cd680a68c84.png
-                        created_at: '1 hour ago'
-                        updated_at: '1 hour ago'
+                        created_at: '2 hours ago'
+                        updated_at: '2 hours ago'
                     items:
                       type: object
                       properties:
@@ -166,10 +166,10 @@ paths:
                           example: images/0QjCS7l8HVbXaPo4muLGlEjxz4H7dXobH6OQ8UOW-custom_icon.png
                         created_at:
                           type: string
-                          example: '12 hours ago'
+                          example: '13 hours ago'
                         updated_at:
                           type: string
-                          example: '12 hours ago'
+                          example: '13 hours ago'
       tags:
         - Endpoints
       security: []
@@ -192,11 +192,11 @@ paths:
                 nom:
                   type: string
                   description: ''
-                  example: doloribus
+                  example: in
                 prenom:
                   type: string
                   description: ''
-                  example: cupiditate
+                  example: at
                 image:
                   type: string
                   format: binary
@@ -224,11 +224,11 @@ paths:
                 nom:
                   type: string
                   description: ''
-                  example: enim
+                  example: itaque
                 prenom:
                   type: string
                   description: ''
-                  example: repudiandae
+                  example: pariatur
                 image:
                   type: string
                   format: binary
